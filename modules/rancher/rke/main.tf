@@ -70,7 +70,7 @@ resource "null_resource" "nodes" {
     type = "ssh"
     user = each.value.user
     host = each.value.host
-    password = "cord"
+    password = each.value.password
   }
 
   provisioner "remote-exec" {
