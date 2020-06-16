@@ -1,0 +1,6 @@
+{
+  "registry.terraform.io/terraform-providers/rancher2": {
+    "hash": "h1:xx0n5qLLgKu/qVxnD6l9gvTj+9hx0K4/o63h9oaO6Zs=",
+    "version": "1.8.3"
+  }
+}

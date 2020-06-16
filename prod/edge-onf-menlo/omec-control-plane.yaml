@@ -1,0 +1,39 @@
+images:
+  tags:
+    hssdb: "docker.io/omecproject/c3po-hssdb:master-92897c5"
+    hss: "docker.io/omecproject/c3po-hss:master-92897c5"
+    mme: "docker.io/omecproject/openmme:master-ab37a71"
+    mmeExporter: "docker.io/omecproject/mme-exporter:0.3.1"
+    spgwc: "docker.io/omecproject/ngic-cp:central-cp-multi-upfs-27438eb"
+  pullPolicy: "Always"
+
+resources:
+  enabled: false
+
+cassandra:
+  config:
+    cluster_size: 1
+    seed_size: 1
+
+config:
+  clusterDomain: "prod.central"
+  mme:
+    cfgFiles:
+      config.json:
+        mme:
+          plmnlist:
+            plmn1: "mcc=315,mnc=010"
+  spgwc:
+    cfgFiles:
+      app_config.cfg: |
+        [GLOBAL]
+        NUM_DP_SELECTION_RULES = 1
+        DNS_PRIMARY = 1.1.1.1
+        DNS_SECONDARY = 8.8.8.8
+        IPV4_MTU = 1450
+        [DP_SELECTION_RULE_1]
+        DPID = 1
+        DPNAME = dp-menlo
+        MCC = 315
+        MNC = 010
+        TAC = 202

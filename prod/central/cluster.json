@@ -1,0 +1,61 @@
+{
+    "cluster_name":"gitops-prod-central",
+    "members":[
+       "hyunsun"
+    ],
+    "rke_config":{
+       "k8s_version":"v1.15.11-rancher1-3",
+       "cluster_domain":"prod.central",
+       "k8s_pod_range":"10.70.0.0/17",
+       "k8s_cluster_ip_range":"10.70.128.0/17",
+       "kube_dns_cluster_ip":"10.70.128.10"
+    },
+    "nodes": {
+       "prod-central-01": {
+          "user": "hyunsun",
+          "password": "hyunsun",
+          "host": "34.94.45.177",
+          "roles": "--etcd --controlplane --worker"
+       }
+    },
+    "projects":{
+       "cord_platform":{
+          "name":"CordPlatform",
+          "description":"Project for CORD platform apps",
+          "members": ["hyunsun"],
+          "apps":{
+             "nem-monitoring":{
+                "name":"nem-monitoring",
+                "catalog_name":"cord",
+                "template_name":"nem-monitoring",
+                "template_version":"1.3.14",
+                "target_namespace":"cord-platform",
+                "values_file":"./central/nem-monitoring.yaml"
+             }
+          }
+       },
+       "connectivity_service":{
+          "name":"ConnectivityService",
+          "description":"Project for connectivity service apps",
+          "members": ["hyunsun"],
+          "apps":{
+             "cassandra":{
+                "name":"cassandra",
+                "catalog_name":"helm-incubator",
+                "template_name":"cassandra",
+                "template_version":"0.15.1",
+                "target_namespace":"omec",
+                "values_file":"./central/cassandra.yaml"
+             },            
+             "omec-control-plane":{
+                "name":"omec-control-plane",
+                "catalog_name":"cord",
+                "template_name":"omec-control-plane",
+                "template_version":"0.1.29",
+                "target_namespace":"omec",
+                "values_file":"./central/omec-control-plane.yaml"
+             }
+          }
+       }
+    }
+ }
