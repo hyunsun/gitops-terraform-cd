@@ -25,7 +25,7 @@ config:
     cfgFiles:
       app_config.cfg: |
         [GLOBAL]
-        NUM_DP_SELECTION_RULES = 1
+        NUM_DP_SELECTION_RULES = 2
         DNS_PRIMARY = 1.1.1.1
         DNS_SECONDARY = 8.8.8.8
         IPV4_MTU = 1450
@@ -35,3 +35,9 @@ config:
         MCC = 315
         MNC = 010
         TAC = 202
+        [DP_SELECTION_RULE_2]
+        DPID = 2
+        DPNAME = edge-wsic
+        MCC = 315
+        MNC = 010
+        TAC = 203
