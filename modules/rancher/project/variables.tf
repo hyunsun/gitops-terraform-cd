@@ -11,6 +11,7 @@ variable "name" {
 variable "description" {
   description = "Description of the project."
   type        = string
+  default     = ""
 }
 
 variable "members" {
@@ -21,13 +22,6 @@ variable "members" {
 
 variable "apps" {
   description = "List of applications."
-  type = map(object({
-    name             = string
-    catalog_name     = string
-    template_name    = string
-    template_version = string
-    target_namespace = string
-    values_file      = string
-  }))
-  default = {}
+  type        = map
+  default     = {}
 }

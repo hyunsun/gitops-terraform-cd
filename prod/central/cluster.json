@@ -12,28 +12,13 @@
     },
     "nodes": {
        "prod-central-01": {
-          "user": "hyunsun",
-          "password": "hyunsun",
-          "host": "34.94.45.177",
+          "user": "Hyunsun",
+          "password": "password",
+          "host": "hp172.utah.cloudlab.us",
           "roles": "--etcd --controlplane --worker"
        }
     },
     "projects":{
-       "cord_platform":{
-          "name":"CordPlatform",
-          "description":"Project for CORD platform apps",
-          "members": ["hyunsun"],
-          "apps":{
-             "nem-monitoring":{
-                "name":"nem-monitoring",
-                "catalog_name":"cord",
-                "template_name":"nem-monitoring",
-                "template_version":"1.3.14",
-                "target_namespace":"cord-platform",
-                "values_file":"./central/nem-monitoring.yaml"
-             }
-          }
-       },
        "connectivity_service":{
           "name":"ConnectivityService",
           "description":"Project for connectivity service apps",

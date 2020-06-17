@@ -11,9 +11,7 @@ resources:
   enabled: false
 
 cassandra:
-  config:
-    cluster_size: 1
-    seed_size: 1
+  deploy: false
 
 config:
   clusterDomain: "prod.central"

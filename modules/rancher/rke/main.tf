@@ -5,6 +5,10 @@ terraform {
       source  = "terraform-providers/rancher2"
       version = "<= 1.8.3"
     }
+    null = {
+      source = "hashicorp/null"
+      version = "~> 2.1.2"
+    }
   }
 }
 
@@ -59,12 +63,21 @@ resource "rancher2_cluster" "cluster" {
   }
 }
 
+resource "rancher2_cluster_role_template_binding" "members" {
+  for_each = toset(var.members)
+
+  name             = each.value
+  cluster_id       = rancher2_cluster.cluster.id
+  role_template_id = "cluster-member"
+  user_id          = each.value
+}
+
 resource "null_resource" "nodes" {
   triggers = {
     cluster_nodes = length(var.nodes)
   }
   
-  for_each = var.nodes  
+  for_each = var.nodes
 
   connection {
     type = "ssh"

@@ -7,5 +7,7 @@ persistence:
 #  enabled: true
 #  storageClass: "zonal-ssd"
 config:
+  cluster_size: 1
+  seed_size: 1
   cluster_domain: "prod.central"
   endpoint_snitch: "GossipingPropertyFileSnitch"

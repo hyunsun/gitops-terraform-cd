@@ -12,21 +12,16 @@ pipeline {
         TF_VAR_rancher_secret_key = credentials('rancherSecretKey')
     }
     stages {
-        stage('Terraform Init') {
-            when {
-                branch 'master'
-            }
+        stage('Terraform Init and Validate') {
             steps {
                   sh '''
                   cd prod
                   terraform init
+                  terraform validate
                   '''
             }
         }
         stage('Terraform Plan') {
-            when {
-                branch 'master'
-            }
             steps {
                 sh '''
                 cd prod

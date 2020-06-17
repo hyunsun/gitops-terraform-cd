@@ -13,6 +13,6 @@ resource "rancher2_app" "app" {
   target_namespace = var.target_namespace
   catalog_name     = var.catalog_name
   template_name    = var.template_name
-  template_version = var.template_version
+  template_version = (var.template_version == "latest" ? null : var.template_version)
   values_yaml      = filebase64(var.values_file)
 }

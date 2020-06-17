@@ -15,9 +15,10 @@ locals {
 }
 
 resource "rancher2_project" "project" {
-  name        = var.name
-  cluster_id  = var.cluster_id
-  description = var.description
+  name             = var.name
+  cluster_id       = var.cluster_id
+  description      = var.description
+  wait_for_cluster = true
 }
 
 resource "rancher2_project_role_template_binding" "member" {
@@ -32,8 +33,9 @@ resource "rancher2_project_role_template_binding" "member" {
 resource "rancher2_namespace" "namespaces" {
   for_each = toset(local.namespaces)
 
-  name       = each.value
-  project_id = rancher2_project.project.id
+  name             = each.value
+  project_id       = rancher2_project.project.id
+  wait_for_cluster = true
 }
 
 module "apps" {

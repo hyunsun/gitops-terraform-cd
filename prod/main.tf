@@ -23,7 +23,7 @@ provider "rancher2" {
 }
 
 module "clusters" {
-  for_each = local.clusters
+  for_each = local.enabled_clusters
 
   source       = "../modules/rancher/cluster"
   cluster_name = each.value.cluster_name
