@@ -1,0 +1,8 @@
+config:
+  sriov:
+    resourceList:
+      vfio:
+        s1uPfNames:
+          - eno1
+        sgiPfNames:
+          - eno1
