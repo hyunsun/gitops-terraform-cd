@@ -40,5 +40,21 @@ pipeline {
                 '''
             }
         }
+        stage('Generate Import Commands') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh '''#!/bin/bash
+                cd prod
+                terraform refresh | while read -r line; do
+                    echo "terraform import $line" | \
+                          sed 's/\\"/\\\"/g' | \
+                          sed 's/: Refreshing state... \\[id=/ /g' | \
+                          sed 's/\\(.*\\)]/\\1/'
+                done
+                '''
+            }
+        }
     }
 }
